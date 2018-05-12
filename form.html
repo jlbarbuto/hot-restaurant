@@ -60,7 +60,23 @@
         </div>
     </div>
     <script type="text/javascript">
+        //clear function for form.html- added in script tag before post
+        function clearFields(){
+              $("#name").val("");
+              $("#phone").val("");
+              $("#email").val("");
+              $("#userID").val("");
+        }
+
         // Create new reservation object
+        var status = 0;
+        function start(){
+            $.get("/api/full", function(data){
+                status = data;
+            })
+        };
+
+
         $("#add-btn").on("click", function(event) {
           event.preventDefault();
           var newtable = {
@@ -74,8 +90,15 @@
           $.post("/api/tables", newtable)
             .then(function(data) {
               console.log("form.html", data);
-              alert("Adding reservation...");
+              $.get("/api/full", function(data){
+                  if(data.full===false){
+                    alert("Adding reservation...");
+                  }else{
+                    alert("Sorry, all tables are full. You've been added to our waitlist.");
+                  }
+              });
             });
+        clearFields();
         });
       </script>
 </body>
