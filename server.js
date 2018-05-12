@@ -31,7 +31,7 @@ res.sendFile(path.join(__dirname, "form.html"));
 });
 
 app.get("/api/wait", function(req, res) {
-return res.json(waitlist);
+return res.json(waitlistArr);
 });
 
 app.get("/api/tables", function(req, res) {

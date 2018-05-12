@@ -27,7 +27,7 @@
                 <h2>Current Reservations</h2>
             </div>
             <ul class="list-group list-group-flush">
-                <div id="name"></div>
+                <div id="table"></div>
             </ul>
         </div>
 
@@ -38,9 +38,7 @@
                 <h2>Wait List</h2>
             </div>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item">Cras justo odio</li>
-                <li class="list-group-item">Dapibus ac facilisis in</li>
-                <li class="list-group-item">Vestibulum at eros</li>
+                <div id="wait"></div>
             </ul>
         </div>
 
@@ -54,11 +52,32 @@
     </div>
 
     <script>
-        $.get("/api/tables/", function(data){
-            $("#name").html(
-                `<li class="list-group-item">${data[i].name}</li>`
-            );
-        });
+        function renderTables(){
+            $.get("/api/tables/", function(data){
+                for (var i=0; i<data.length; i++) {
+                    console.log(data[i].name)
+                    $("#table").append(
+                    `<li class="list-group-item">${i+1} | ${data[i].name}</li>`
+                    );
+                }
+
+            });
+        };
+
+        function renderWait(){
+            $.get("/api/wait/", function(data){
+                for (var i=0; i<data.length; i++) {
+                    console.log(data[i].name)
+                    $("#wait").append(
+                    `<li class="list-group-item">${i+1} | ${data[i].name}</li>`
+                    );
+                }
+
+            });
+        };
+
+        renderTables();
+        renderWait();
     </script>
 </body>
 </html>
