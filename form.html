@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <title>Restaurant</title>
+</head>
+
+<body>
+
+    <div class="container">
+            <div class="jumbotron">
+                    <h1 class="display-4">Hot Restaurant</h1>
+                    <p class="lead">Make a Reservation Here!</p>
+                    <hr class="my-4">
+                    <p class="lead">
+                      <a class="btn btn-primary btn-lg" href="/tables" role="button">View Tables</a>
+                      <a class="btn btn-primary btn-lg" href="/" role="button">Home</a>
+                    </p>
+                  </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <strong>Make Reservation</strong>
+                    </h3>
+                </div>
+                <form method="POST" role="form">
+                    <div class="form-group">
+
+                        <label for="inputName">Name</label>
+                        <input class="form-control" type="text" id="name" placeholder="">
+                        <label for="inputPhone">Phone</label>
+                        <input class="form-control" type="text" id="phone" placeholder="">
+                        <label for="inputEmail">Email</label>
+                        <input class="form-control form-control-sm" id="email" type="text" placeholder="">
+                        <label for="inputID">Unique ID </label>
+                        <input class="form-control form-control-sm" id="userID" type="text" placeholder="Optional">
+
+                    </div>
+
+                    <div class="text">
+                        <button type="submit" class="btn btn-primary btn-md" id="add-btn">
+                            Add Your Reservation</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <br>
+        <div>
+            <a href="/api/tables">API Table Link</a> 
+            <span> | </span>
+            <a href="/api/wait">API Wait List</a>
+        </div>
+    </div>
+    <script type="text/javascript">
+        // Create new reservation object
+        $("#add-btn").on("click", function(event) {
+          event.preventDefault();
+          var newtable = {
+            name: $("#name").val().trim(),
+            role: $("#phone").val().trim(),
+            age: $("#email").val().trim(),
+            userID: $("#userID").val().trim()
+          };
+    
+          // Post object to server
+          $.post("/api/tables", newtable)
+            .then(function(data) {
+              console.log("form.html", data);
+              alert("Adding reservation...");
+            });
+        });
+      </script>
+</body>
+
+</html>

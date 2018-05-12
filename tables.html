@@ -11,17 +11,46 @@
 
 <body>
     <div class="container">
-        <div class="jumbotron">
-            <h1 class="display-4">Hot Restaurant</h1>
-            <p class="lead">5 Tables, make a  reservation before there gone!</p>
+        <div>
+            <div class="jumbotron">
+            <h1 class="display-4">Tables</h1>
+            <p class="lead">Current reservations and waitlist</p>
             <hr class="my-4">
             <p class="lead">
-                <a class="btn btn-primary btn-lg" href="/tables" role="button">View Tables</a>
-                <a class="btn btn-primary btn-lg" href="/reserve" role="button">Make a Reservation</a>
+                <a class="btn btn-primary btn-lg" href="/" role="button">Home</a>
+                <a class="btn btn-primary btn-lg" href="/form" role="button">Make a Reservation</a>
             </p>
         </div>
-        <div>
+
+        <div class="card" style="width: 100%;">
+            <div class="card-header">
+            <h2>Current Reservations</h2>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Cras justo odio</li>
+                <li class="list-group-item">Dapibus ac facilisis in</li>
+                <li class="list-group-item">Vestibulum at eros</li>
+            </ul>
+        </div>
+
+        <br>
+
+        <div class="card" style="width: 100%;">
+            <div class="card-header">
+            <h2>Wait List</h2>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Cras justo odio</li>
+                <li class="list-group-item">Dapibus ac facilisis in</li>
+                <li class="list-group-item">Vestibulum at eros</li>
+            </ul>
+        </div>
+
+        <br>
+
+        </div>
             <a href="/api/tables">API Table Link</a>
+            <span> | </span>
             <a href="/api/wait">API Wait List</a>
         </div>
     </div>
